@@ -1,0 +1,29 @@
+.coinBlock{
+    /* display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+    margin-top: 1px; */
+    display: grid;
+    grid-template-columns:0.3fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.coinBlock img {
+    width:30px;
+    height: 30px;
+}
+
+.pagination{
+    display: flex;
+
+}
+
+.pagination li{
+    list-style: none;
+}
+
+.activeEl{
+    background-color: rgb(146, 144, 144);
+}

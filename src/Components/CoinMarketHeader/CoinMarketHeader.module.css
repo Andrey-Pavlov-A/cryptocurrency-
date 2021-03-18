@@ -1,0 +1,22 @@
+.name{
+    grid-area: name;
+}
+
+.price{
+    grid-area: price;
+}
+
+.price_change{
+    grid-area: price_change;
+}
+
+.market_cap{
+    grid-area: market_cap;
+}
+
+.header{
+    display: grid;
+    grid-template-columns:0.3fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:". name price price_change market_cap";
+    justify-items: center;
+}
