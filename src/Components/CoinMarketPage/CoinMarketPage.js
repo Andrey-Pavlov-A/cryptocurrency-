@@ -1,17 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import CoinContainer1 from '../coinElement/CoinContainer1'
-import CoinElementContainer from '../coinElement/coinElementContainer'
-import CoinMarketHeader from '../CoinMarketHeader/CoinMarketHeader'
+import CoinMarketHeaderContainer from '../CoinMarketHeader/CoinMarketHeader'
 import CoinPagination from '../CoinPagination/CoinPagination'
 
-const CoinMarketPage = () => {
+const CoinMarketPage = (props) => {
     return (
         <div>
-            <CoinMarketHeader/>
-            <CoinContainer1/>
-            <CoinPagination />
+            <div>
+                <CoinMarketHeaderContainer/>
+                <CoinContainer1/>
+                <CoinPagination />
+            </div>
+            
         </div>
     )
 }
 
-export default CoinMarketPage
+const maStateToProps = (state) => {
+    return {
+        isDataLoading: state.coinsPage.isDataLoading
+    }
+}
+const CoinMarketPageContainer = connect(maStateToProps, {})(CoinMarketPage)
+
+export default CoinMarketPageContainer

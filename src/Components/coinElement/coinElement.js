@@ -1,8 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import s from './CoinElement.module.css'
+import {getMetaDataThunkCreator} from '../../redux/metadata-reducer'
+import {setCoinIdAC} from '../../redux/metadata-reducer'
 
 const CoinElement = (props) => {
-  //debugger
+
+  const setId = () => {
+    props.setCoinIdAC(props.id)
+  }
+
+  let url = `/${props.id}`
   if(typeof(props))
   return (
     <div className={s.coinBlock}>
@@ -10,7 +19,9 @@ const CoinElement = (props) => {
         <img src={props.img} />
       </div>
       <div>
-        <div>{props.name}</div>
+        <NavLink onClick={setId} to='/coins/metadata'>
+          <div>{props.name}</div>
+        </NavLink>
       </div>
       <div>
         <div>${(+props.price).toFixed(3)}</div>
@@ -30,4 +41,6 @@ const CoinElement = (props) => {
   );
 };
 
-export default CoinElement;
+const CoinElementContainer = connect(null, {getMetaDataThunkCreator, setCoinIdAC})(CoinElement)
+
+export default CoinElementContainer;

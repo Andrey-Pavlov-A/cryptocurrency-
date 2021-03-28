@@ -8,6 +8,11 @@
     grid-template-columns:0.3fr 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(219, 216, 216);
+    border-bottom-width: 1px;
+    margin-bottom: 10px;
+    padding:2px
 }
 
 .coinBlock img {
@@ -17,7 +22,9 @@
 
 .pagination{
     display: flex;
-
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0;
 }
 
 .pagination li{
@@ -26,4 +33,21 @@
 
 .activeEl{
     background-color: rgb(146, 144, 144);
+}
+
+.spinner{
+    margin: auto;
+    padding: 30px;
+}
+
+.spinnerBlock{
+    display: flex;
+    justify-content: center;
+    height:80vh
+}
+
+.pagination button{
+    border: none;
+    background-color:#ebebeb;
+    padding: 7px;
 }

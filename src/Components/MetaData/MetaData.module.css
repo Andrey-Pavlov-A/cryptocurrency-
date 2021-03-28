@@ -1,0 +1,51 @@
+.dataPage{
+    height:100vh
+}
+
+.descriptionLinks{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+
+.descriptionLinks li{
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+    width:450px;
+    flex-wrap: wrap;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(202, 199, 199);
+    border-bottom-width: 1px;
+}
+
+.descriptionLinks h5{
+    width:150px
+}
+
+.descriptionLinks p{
+    margin-left: 10px;
+    float: left;
+    width: 250px;
+    flex-wrap: wrap;
+    word-wrap:break-word;
+    
+}
+
+.descriptionLinks a{
+    text-decoration: none;
+    color: rgb(43, 41, 41)
+}
+
+.description{
+    height: 100px;
+    word-wrap:break-word;
+    overflow:hidden;
+    transition: all 1s ease-in-out;
+}
+
+.showMore{
+    max-height: 100%;
+    overflow: auto;
+    transition: all 1s ease-in-out;
+}
