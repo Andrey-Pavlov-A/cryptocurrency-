@@ -1,16 +1,18 @@
-import { currenciesMetadata, sparklineData } from "../API/api";
+import { currenciesMetadata, getMetaData, markets, sparklineData } from "../API/api";
 
 
 const SET_INFO = 'SET_INFO'
 const SET_LOADING = 'SET_LOADING'
 const SET_COIN_ID = 'SET_COIN_ID'
 const SET_SPARKLINE = 'SET_SPARKLINE'
+const SET_MARKET = 'SET_MARKET'
 
 let initState = {
   info: [],
   sparklineData: [],
   isLoading: true,
-  currentCoinId: ''
+  currentCoinId: '',
+  marketData: []
 };
 
 const metadataReducer = (state = initState, action) => {
@@ -34,6 +36,11 @@ const metadataReducer = (state = initState, action) => {
       return{
         ...state,
         sparklineData: action.data
+      }
+    case SET_MARKET:
+      return{
+        ...state,
+        marketData: action.data
       }
     default:
       return state;
@@ -69,19 +76,27 @@ export const setCoinIdAC = (id) => {
   }
 }
 
+export const setMarketAC = (data) => {
+  //debugger
+  return{
+      type: SET_MARKET,
+      data
+  }
+}
+
 export const getMetaDataThunkCreator = (id) => async dispatch =>{
-    //debugger
-    dispatch(setLoadingAC(true))
-    let responseMetaData = await currenciesMetadata(id)
-    .then(res => {
-      dispatch(setInfoAC(res))
-      let responseSparklineData = sparklineData(id)
-      .then(result => {
-        dispatch(setSparklineDataAC(result))
-      })
+  //debugger
+  dispatch(setLoadingAC(true))
+  let responseMetaData = await currenciesMetadata(id)
+  .then(res => {
+    dispatch(setInfoAC(res))
+  })
+  let responseSparklineData = await sparklineData(id)
+    .then(result => {
+      dispatch(setSparklineDataAC(result))
     })
-    
-    dispatch(setLoadingAC(false))
+  
+  dispatch(setLoadingAC(false))
 }
 
 export const getSparklineData = (id, dateFrom) => async dispatch =>{
@@ -93,3 +108,15 @@ export const getSparklineData = (id, dateFrom) => async dispatch =>{
 }
 
 export default metadataReducer
+//export const getMetaDataThunkCreator = (id) => async dispatch =>{
+//    //debugger
+//    dispatch(setLoadingAC(true))
+//    let responseMetaData = await getMetaData(id)
+//    .then(result => {
+//      debugger
+//      dispatch(setInfoAC(result[0]))
+//      dispatch(setSparklineDataAC(result[1]))
+//    })
+//    
+//    dispatch(setLoadingAC(false))
+//}

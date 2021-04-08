@@ -1,0 +1,45 @@
+.inputsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputsContainer input{
+    height:30px;
+    outline: none;
+    border: none;
+}
+
+.convertForm{
+    display: flex;
+    align-items: center;
+    background-color: #ffc107;
+    padding:2px 3px 2px 3px;
+    border-radius: 2px;
+}
+
+.dropdownSearch{
+    max-height:200px;
+    overflow: scroll;
+    width:100px;
+    overflow-x:hidden;
+}
+.inputValue{
+    width:100px;
+    
+}
+
+.searchInput{
+    width:100%;
+    height:20px !important;
+    padding:1px 3px 1px 3px;
+    border-radius: 2px;
+    
+}
+
+.dropButton{
+    border-radius: 1px;
+}
+
+

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Route } from "react-router";
 import s from "./MetaData.module.css";
 import {getMetaDataThunkCreator} from '../../redux/metadata-reducer'
-import SparklineContainer from "../Sparkline/Sparkline";
+import SparklineContainer from "../Sparkline/Crypto_Sparkline";
 
 const MetaDataPage = (props) => {
   //debugger;
@@ -15,6 +15,7 @@ const MetaDataPage = (props) => {
   useEffect(() => {
     props.getMetaDataThunkCreator(props.currentCoinId)
   }, [props.currentCoinId])
+
 
   const showContent = () => {
     setShowMore(!showMore);
@@ -27,7 +28,7 @@ const MetaDataPage = (props) => {
       ) : (
         <div>
           <Container>
-            <div>
+            <div className={s.section}>
               <h1>About {props.info[0].name}</h1>
               <p className={showMore ? s.showMore : s.description}>
                 {props.info.length !== 0 ? props.info[0].description : null}
@@ -36,7 +37,7 @@ const MetaDataPage = (props) => {
                 {showMore ? "Show less" : "Show more"}
               </button>
             </div>
-            <div>
+            <div className={s.section}>
               <div>
                 <ul className={s.descriptionLinks}>
                   <li>
@@ -82,7 +83,10 @@ const MetaDataPage = (props) => {
                 </ul>
               </div>
             </div>
-            <SparklineContainer />
+            <div className={s.section}>
+              <SparklineContainer />
+            </div>
+            
           </Container>
         </div>
       )}

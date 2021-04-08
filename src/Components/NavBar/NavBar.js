@@ -10,7 +10,7 @@ const NavBar = (props) => {
     <Navbar.Brand href="#home">CryptoCurrency</Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link as={NavLink} to="/coins">Coins</Nav.Link>
-      <Nav.Link as={NavLink} to="/statistics">Statistics</Nav.Link>
+      <Nav.Link as={NavLink} to="/converting">Convert currencies</Nav.Link>
       <Nav.Link as={NavLink} to="/smth">Smth more</Nav.Link>
     </Nav>
   </Navbar>
