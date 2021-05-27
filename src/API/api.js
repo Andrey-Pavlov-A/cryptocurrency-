@@ -2,6 +2,7 @@ import axios from "axios";
 import delayAdapterEnhancer from "axios-delay";
 import axiosRetry from "axios-retry";
 
+const currentDate = new Date().toISOString()
 const key = "7be0558d67d197f6e80bc9dd8f7a4c85";
 const api = axios.create({
   adapter: delayAdapterEnhancer(axios.defaults.adapter)
@@ -42,8 +43,8 @@ export const currenciesMetadata = (id) => {
 
 export const sparklineData = (id, fromDate = '2018-04-14T00%3A00%3A00Z') => {
   //debugger
-  console.log(fromDate)
   let currentDate = new Date()
+  console.log(fromDate)
   return api
     .get(`https://api.nomics.com/v1/currencies/sparkline?key=${key}&ids=${id.replace(/"/g,)}&start=${fromDate}&end=${currentDate.toISOString()}`, {delay: 700})
     .then((res) => {
@@ -54,7 +55,7 @@ export const sparklineData = (id, fromDate = '2018-04-14T00%3A00%3A00Z') => {
 };
 
 export const exchangeRates = () => {
-  return axios.get(`https://api.nomics.com/v1/exchange-rates?key=${key}`)
+  return api.get(`https://api.nomics.com/v1/exchange-rates?key=${key}`)
   .then(response => {
     return response
   })
@@ -64,5 +65,17 @@ export const exchangeRateHistory = () => {
   axios.get('https://api.nomics.com/v1/exchange-rates/history?key=your-key-here&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-05-14T00%3A00%3A00Z')
   .then(response => {
     return response
+  })
+}
+
+export const exchangeHistorySparkline = (coin, toDate = '2021-04-14T00%3A00%3A00Z') => {
+  //debugger
+  const currentDate = new Date()
+  currentDate.setDate(currentDate.getDate() - 1)
+  //console.log(toDate)
+  return api.get(`https://api.nomics.com/v1/exchange-rates/history?key=${key}&currency=${coin.replace(/"/g,)}&start=${toDate}&end=${currentDate.toISOString()}`, {delay: 1000})
+  .then(res => {
+    //debugger
+    return res.data
   })
 }

@@ -3,7 +3,7 @@ import { Container, Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Route } from "react-router";
 import s from "./MetaData.module.css";
-import {getMetaDataThunkCreator} from '../../redux/metadata-reducer'
+import {getMetaDataThunkCreator, setActiveEl} from '../../redux/metadata-reducer'
 import SparklineContainer from "../Sparkline/Crypto_Sparkline";
 
 const MetaDataPage = (props) => {
@@ -83,9 +83,15 @@ const MetaDataPage = (props) => {
                 </ul>
               </div>
             </div>
+            {props.isSpaklineLoaded ? 
+            (
+              <Spinner animation="border" />
+            ) : (
             <div className={s.section}>
-              <SparklineContainer />
+              <SparklineContainer activeEl={props.activeEl} setActiveEl={props.setActiveEl} />
             </div>
+            )
+            }
             
           </Container>
         </div>
@@ -99,9 +105,11 @@ const mapStateToProps = (state) => {
     info: state.metaDataPage.info,
     isLoading: state.metaDataPage.isLoading,
     currentCoinId: state.metaDataPage.currentCoinId,
+    activeEl: state.metaDataPage.activeEl,
+    isSpaklineLoaded: state.metaDataPage.isSpaklineLoaded
   };
 };
 
-const MetaDataPageContainer = connect(mapStateToProps, {getMetaDataThunkCreator})(MetaDataPage);
+const MetaDataPageContainer = connect(mapStateToProps, {getMetaDataThunkCreator, setActiveEl})(MetaDataPage);
 
 export default MetaDataPageContainer;

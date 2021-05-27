@@ -8,11 +8,12 @@
     grid-template-columns:0.3fr 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
+    align-items: center;
     border-bottom-style: solid;
-    border-bottom-color: rgb(219, 216, 216);
+    border-bottom-color: rgb(221, 215, 215);
     border-bottom-width: 1px;
-    margin-bottom: 10px;
-    padding:2px
+    
+    padding:10px
 }
 
 .coinBlock img {

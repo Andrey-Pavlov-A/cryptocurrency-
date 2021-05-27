@@ -5,7 +5,10 @@ import NavBar from "./Components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MetaDataPageContainer from "./Components/MetaData/MetaDataPage";
 import { connect } from "react-redux";
-import Exchange from "./Components/Exchange/Exchange";
+import { lazy, Suspense } from "react";
+import { Spinner } from "react-bootstrap";
+const Exchange = lazy(() => import("./Components/Exchange/Exchange")) 
+
 function App(props) {
   return (
     <BrowserRouter>
@@ -17,7 +20,7 @@ function App(props) {
             path="/coins/metadata"
             render={() => <MetaDataPageContainer />}
           />
-          <Route path="/converting" render={() => <Exchange />} />
+          <Route path="/converting" render={() => <Suspense fallback={<Spinner/>}><Exchange /></Suspense>} />
         </Switch>
       </div>
     </BrowserRouter>
